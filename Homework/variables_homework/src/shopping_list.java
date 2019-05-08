@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class Week_2_assignment {
+public class shopping_list {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
         String item_1_name;
