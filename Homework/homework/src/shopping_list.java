@@ -1,31 +1,73 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class shopping_list {
     public static void main(String[] args) {
         Scanner console = new Scanner(System.in);
-        String item_1_name;
-        String item_2_name;
-        double item_1_price;
-        double item_2_price;
-        int item_1_quantity;
-        int item_2_quantity;
-        int item_1_coupon;
-        int item_2_coupon;
 
+        int number_of_items;
+        int coupon;
+        List<String> itemsName = new ArrayList<>();
+        List<Double> itemsPrice = new ArrayList<>();
+        List<Integer> itemsQuantity = new ArrayList<>();
+        List<Integer> itemsCoupons = new ArrayList<>();
+        List<Double> totalCosts = new ArrayList<>();
+        double finalCost = 0;
+        String temp;
 
-        System.out.println("Enter the name of item: ");
-        item_1_name = console.next();
+        System.out.println("Enter the number of items ");
+        number_of_items = console.nextInt();
 
-        System.out.println("Enter the price of " + item_1_name);
-        item_1_price = console.nextDouble();
+        for( int i=0; i<number_of_items; i++ )
+        {
+            do {
+                System.out.println("Enter the name of item no: " +(i+1));
+                temp = console.next();
+                if (temp.length() > 10)
+                {
+                    System.out.println("Name is too long");
+                }
 
-        System.out.println("Enter the quantity: ");
-        item_1_quantity = console.nextInt();
+            }while (temp.length() > 10);
 
-        double total_cost_1 = item_1_price * item_1_quantity;
+            itemsName.add(temp);
+
+            System.out.println("Enter the price of " + itemsName.get(i));
+            itemsPrice.add(console.nextDouble());
+
+            System.out.println("Enter the quantity of " + itemsName.get(i));
+            itemsQuantity.add(console.nextInt());
+
+            System.out.println("Enter the coupon for " + itemsName.get(i) + " as a %");
+            itemsCoupons.add(console.nextInt());
+
+        }
+
+        for (int i=0; i< number_of_items; i++)
+        {
+            totalCosts.add(itemsPrice.get(i) * itemsQuantity.get(i));
+        }
+
+        for (int i=0; i< number_of_items; i++)
+        {
+            finalCost += totalCosts.get(i);
+        }
+
+        System.out.println("Enter the coupon as a %");
+        coupon = console.nextInt();
+
+        printFinalCost(finalCost,coupon);
+
+/*       ;
 
         System.out.println("Enter the name of next item: ");
         item_2_name = console.next();
+        while (item_2_name.length() >= 11)
+        {
+            System.out.println("Name is too long");
+
+            System.out.println("Enter the name of next item once again: ");
+            item_2_name = console.next();
+        }
 
         System.out.println("Enter the price of " + item_2_name);
         item_2_price = console.nextDouble();
@@ -49,9 +91,9 @@ public class shopping_list {
         printFinalCost(item_1_name,total_cost_1,item_1_coupon);
         printTotalCost(item_2_name,total_cost_2);
         printCouponRate(item_2_name,item_2_coupon);
-        printFinalCost(item_2_name,total_cost_2,item_2_coupon);
-        printCostStatistics(final_cost_1,final_cost_2);
-        printCouponStatistics(item_1_coupon,item_1_coupon);
+        printFinalCost(item_2_name,total_cost_2,item_2_coupon);*/
+//        printCostStatistics(final_cost_1,final_cost_2);
+//        printCouponStatistics(item_1_coupon,item_1_coupon);
 
     }
 
@@ -64,12 +106,12 @@ public class shopping_list {
     }
 
 
-    private static void printFinalCost (String itemName, double totalCost, int coupon){
+    private static void printFinalCost (double totalCost, int coupon){
         double finalCost = totalCost - ((totalCost * coupon)/100);
-        System.out.println("Final cost of " + itemName + " is " + finalCost);
+        System.out.println("Final cost is " + finalCost);
     }
 
-    private static void printCostStatistics(double finalCost1, double finalCost2){
+  /*  private static void printCostStatistics(double finalCost1, double finalCost2){
         System.out.println("****** Cost statistics ******");
         System.out.println("Most expensive item costs : " + Math.max(finalCost1, finalCost2));
         System.out.println("Cheapest item costs : " + Math.min(finalCost1, finalCost2));
@@ -78,7 +120,7 @@ public class shopping_list {
     private static void printCouponStatistics(int coupon1, int coupon2){
         System.out.println("****** Coupon statistics ******");
         System.out.println( Math.max(coupon1, coupon2) + " percent off is awesome !!") ;
-        //TOOD: print message "X percent off is awesome !!" where X is bigger discount coupon.
-    }
+
+    }*/
 
 }
