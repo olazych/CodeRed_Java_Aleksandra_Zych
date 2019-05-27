@@ -35,9 +35,6 @@ public class shopping_list {
 
         double total_cost_2 = item_2_price * item_2_quantity;
 
-        System.out.println("Total cost of " + item_1_name + " is " + total_cost_1);
-        System.out.println("Total cost of " + item_2_name + " is " + total_cost_2);
-
         System.out.println("Enter the coupon for " + item_1_name + " as a %)");
         item_1_coupon = console.nextInt();
 
@@ -47,9 +44,14 @@ public class shopping_list {
         double final_cost_1 = total_cost_1 - ((total_cost_1 * item_1_coupon) / 100);
         double final_cost_2 = total_cost_2 - ((total_cost_2 * item_2_coupon) / 100);
 
-        System.out.println("Final cost of " + item_1_name + " is " + final_cost_1);
-        System.out.println("Final cost of " + item_2_name + " is " + final_cost_2);
-
+        printTotalCost(item_1_name,total_cost_1);
+        printCouponRate(item_1_name,item_1_coupon);
+        printFinalCost(item_1_name,total_cost_1,item_1_coupon);
+        printTotalCost(item_2_name,total_cost_2);
+        printCouponRate(item_2_name,item_2_coupon);
+        printFinalCost(item_2_name,total_cost_2,item_2_coupon);
+        printCostStatistics(final_cost_1,final_cost_2);
+        printCouponStatistics(item_1_coupon,item_1_coupon);
 
     }
 
@@ -73,7 +75,7 @@ public class shopping_list {
         System.out.println("Cheapest item costs : " + Math.min(finalCost1, finalCost2));
     }
 
-    private static void printCouponStatistics(int coupon1, double coupon2){
+    private static void printCouponStatistics(int coupon1, int coupon2){
         System.out.println("****** Coupon statistics ******");
         System.out.println( Math.max(coupon1, coupon2) + " percent off is awesome !!") ;
         //TOOD: print message "X percent off is awesome !!" where X is bigger discount coupon.
